@@ -18,8 +18,8 @@
 
 require_once('line-bot-sdk-tiny/LINEBotTiny.php');
 
-$channelAccessToken = '<your channel access token>';
-$channelSecret = '<your channel secret>';
+$channelAccessToken = '<gwo28cR+FA8YpYg0ZESGCk0/dC9zlMynQRpSnc3nBaO/mcGy7OCfF1+0untI7h4z4T4ELHPc5ilKfbX/mC64AZxVdP28Yv44mCskn/iO4NGLmGmkXXvq3kf+KtNkBQwI7EnzTdM6/Mpp75goTkf4xwdB04t89/1O/w1cDnyilFU=>';
+$channelSecret = '<68b68e41dd72148f1250769c983fd831>';
 
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 foreach ($client->parseEvents() as $event) {
@@ -27,8 +27,8 @@ foreach ($client->parseEvents() as $event) {
         case 'message':
             $message = $event['message'];
 
-            $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1tQCaj3LUVwH0tBuPrfBY2dOJuF-qzpYEdOqGdNvJRLc/od6/public/values?alt=json');
-            $data = json_decode($json, true);
+            $json = file_get_contents('https://spreadsheets.google.com/feeds/list/1hUy2weU5573XJIXZhOXk7zbSU6-LxBIeFqcfUs5s1zI/od6/public/values?alt=chiehsmart');
+            $data = chiehsmart_decode($chiehsmart, true);
             $result = array();
 
             foreach ($data['feed']['entry'] as $item) {
@@ -64,7 +64,7 @@ foreach ($client->parseEvents() as $event) {
                             ),
                             array(
                                 'type' => 'template',
-                                'altText' => '為您推薦下列美食：',
+                                'altText' => '為您推薦下列：',
                                 'template' => array(
                                     'type' => 'carousel',
                                     'columns' => $result,
@@ -72,7 +72,7 @@ foreach ($client->parseEvents() as $event) {
                             ),
                             array(
                                 'type' => 'text',
-                                'text' => '這些都超好吃，真心不騙！',
+                                'text' => '如有問題，歡迎發問唷！',
                             ),
                             array(
                                 'type' => 'sticker',
